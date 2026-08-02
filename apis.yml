@@ -1,0 +1,25 @@
+aid: r-zero
+name: R-Zero
+description: 'R-Zero is a company surfaced via the API Evangelist harvest backlog (source: secondary-market;
+  backed by leadout-capital) and added to the network as a stub for full-pipeline profiling.'
+url: https://raw.githubusercontent.com/api-evangelist/r-zero/refs/heads/main/apis.yml
+x-type: company
+x-source: harvest:secondary-market
+x-tier: stub
+x-tier-reason: harvest
+specificationVersion: '0.20'
+created: '2026-08-02'
+modified: '2026-08-02'
+tags:
+- Company
+apis: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+x-backed-by:
+- leadout-capital
+common:
+- type: Website
+  url: https://forgeglobal.com/r-zero_stock/
