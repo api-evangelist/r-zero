@@ -1,0 +1,24 @@
+generated: '2026-08-02'
+method: searched
+source: npm, PyPI, RubyGems, Packagist, crates.io, pkg.go.dev, GitHub, rzero.com and
+  coworkr.co documentation
+packages: []
+note: >-
+  No first-party R-Zero or CoWorkr client library was found in any public package
+  registry, and neither rzero.com nor coworkr.co publishes an SDK page. The npm hits
+  for "rzero" (rzero, rzero-tools, rzero-link) are unrelated third-party packages
+  (an HTTP helper and Redux-Zero utilities). No SDKs pointer is wired.
+registries_searched:
+- {registry: npm, query: 'rzero, r-zero, coworkr', official_hits: 0}
+- {registry: pypi, query: 'rzero, r-zero, coworkr', official_hits: 0}
+- {registry: rubygems, query: 'rzero, coworkr', official_hits: 0}
+- {registry: packagist, query: 'rzero, coworkr', official_hits: 0}
+- {registry: crates.io, query: 'rzero, coworkr', official_hits: 0}
+- {registry: pkg.go.dev, query: 'rzero, coworkr', official_hits: 0}
+github_orgs_checked:
+- {org: rzero, status: 404}
+- {org: rzerosystems, status: 404}
+- {org: r-zero, status: 200, public_repos: 0, display_name: Safe@Work, note: name does
+    not confirm ownership by R-Zero Systems and the org publishes no repositories -
+    not claimed as the company GitHub organization}
+- {org: coworkr, status: 200, public_repos: 0}

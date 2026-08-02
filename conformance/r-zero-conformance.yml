@@ -1,0 +1,62 @@
+generated: '2026-08-02'
+method: searched
+source: https://rzero.com/security/
+standards:
+- id: soc2-type2
+  conforms: true
+  evidence: 'rzero.com/security/ states the platform is independently audited to SOC
+    2 Type II'
+  source: https://rzero.com/security/
+- id: soc3
+  conforms: true
+  evidence: a public-facing SOC 3 report is offered for download from the security
+    page
+  source: https://rzero.com/security/
+- id: iso-27001
+  conforms: false
+  evidence: not claimed on any public R-Zero page
+- id: pci-dss
+  conforms: false
+  evidence: not applicable - R-Zero does not process cardholder data on the API surface
+- id: hipaa
+  conforms: false
+  evidence: not claimed publicly, although R-Zero sells into healthcare
+- id: fedramp
+  conforms: false
+  evidence: not claimed publicly
+- id: gdpr
+  conforms: partial
+  evidence: 'rzero.com/legal/privacy-policy/ and the product privacy notice describe
+    data handling; R-Zero states the sensing platform collects no PII (no cameras,
+    no personal identifiers) and the CoWorkr EULA forbids PII in Tag values'
+  source: https://rzero.com/legal/product-privacy-notice/
+- id: oauth2
+  conforms: false
+  evidence: no public OAuth 2.0 documentation or authorization-server metadata found;
+    API access is account-permission gated
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns the SPA catch-all on every host
+- id: rfc9457-problem-details
+  conforms: unknown
+  evidence: no public specification or error reference to evaluate
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: no /.well-known/security.txt on rzero.com or coworkr.co
+- id: asyncapi
+  conforms: false
+  evidence: a real-time Stream API exists (Node.js/DDP) but no AsyncAPI document is
+    published
+- id: ddp
+  conforms: true
+  evidence: 'coworkr.co/apiaccess: "CoWorkr uses Node.js and DDP to push utilization
+    sensors updates" - the Meteor Distributed Data Protocol is the streaming wire format'
+  source: https://coworkr.co/apiaccess
+security_posture:
+  architecture: outbound-only
+  pii_collected: false
+  claims_source: https://rzero.com/security/
+  documents:
+  - {name: SOC 3 Report, availability: public download from the security page}
+  - {name: Security & Privacy Whitepaper, availability: public download from the security
+      page}

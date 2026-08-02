@@ -1,0 +1,74 @@
+generated: '2026-08-02'
+method: probed
+source: live probe of every R-Zero / CoWorkr host
+note: >-
+  No /.well-known/ document was found on any R-Zero or CoWorkr host. Every host that
+  answered 200 did so with a single-page-application catch-all (the CoWorkr Meteor
+  shell on api.coworkr.co, the Next.js shell on app.rzero.com / dashboard.rzero.com),
+  returning identical HTML for every path probed - these are recorded as
+  status 200 with result "html-catchall" and are NOT treated as hits. connect.rzero.com
+  and users.rzero.com answer 401 for every path. This artifact records the negative
+  result; no WellKnown / SecurityTxt pointer is wired because no document exists.
+hosts:
+- host: https://api.coworkr.co
+  result: html-catchall
+  documents:
+  - {path: /.well-known/security.txt, status: 200, result: html-catchall}
+  - {path: /.well-known/openid-configuration, status: 200, result: html-catchall}
+  - {path: /.well-known/oauth-authorization-server, status: 200, result: html-catchall}
+  - {path: /.well-known/api-catalog, status: 200, result: html-catchall}
+  - {path: /.well-known/ai-plugin.json, status: 200, result: html-catchall}
+  - {path: /.well-known/agent-card.json, status: 200, result: html-catchall}
+  - {path: /.well-known/agent.json, status: 200, result: html-catchall}
+- host: https://app.rzero.com
+  result: html-catchall
+  documents:
+  - {path: /.well-known/security.txt, status: 200, result: html-catchall}
+  - {path: /.well-known/openid-configuration, status: 200, result: html-catchall}
+  - {path: /.well-known/oauth-authorization-server, status: 200, result: html-catchall}
+  - {path: /.well-known/api-catalog, status: 200, result: html-catchall}
+  - {path: /.well-known/ai-plugin.json, status: 200, result: html-catchall}
+  - {path: /.well-known/agent-card.json, status: 200, result: html-catchall}
+  - {path: /.well-known/agent.json, status: 200, result: html-catchall}
+- host: https://connect.rzero.com
+  result: gated
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/agent-card.json, status: 401}
+  - {path: /.well-known/agent.json, status: 401}
+- host: https://coworkr.co
+  result: none
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://rzero.com
+  result: none
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+x-contract-discovery:
+  fetched: '2026-08-02'
+  openapi: none
+  openapi_paths_probed: [/openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json,
+    /api-docs, /docs, /redoc]
+  openapi_hosts_probed: [api.coworkr.co, coworkr.co, app.rzero.com, connect.rzero.com,
+    rzero.com, dashboard.rzero.com, analytics.rzero.com, users.rzero.com, partners.rzero.com,
+    iot.rzero.com]
+  graphql: none
+  graphql_probed: [https://api.coworkr.co/graphql (405), 'https://app.rzero.com/api/graphql
+      (404)']
+  mcp: none
+  mcp_probed: ['https://api.coworkr.co/mcp (405)', 'https://app.rzero.com/mcp (307
+      -> /login, generic SPA auth guard: an unrelated random path returns the same
+      307, so this is not an MCP endpoint)']
+  a2a: none
+  conclusion: >-
+    R-Zero publishes no anonymous machine-readable API contract. The REST and Stream
+    APIs are real and documented, but the documentation lives inside the authenticated
+    CoWorkr application and access is granted per account on request to R-Zero support.

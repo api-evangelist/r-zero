@@ -1,0 +1,135 @@
+generated: '2026-08-02'
+method: searched
+source: https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions
+sources:
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408423267991-General-Definitions
+note: >-
+  Derived from R-Zero's own published API Definitions article - the object reference
+  for the CoWorkr platform that both the REST API and the Stream API expose. No OpenAPI
+  is published, so field types are recorded as R-Zero describes them, verbatim where
+  possible. Attributes marked admin_only are documented as "CoWorkr Admin use only".
+entities:
+- name: WorkPoint
+  description: CoWorkr's occupancy sensor. A matchbook-sized mesh-network device that
+    reports an occupancy state; reports "Occupied" instantaneously and otherwise sends
+    a heartbeat every minute. Also carries notification buttons.
+  identifiers:
+  - {field: WorkPoint UUID, description: unique string defined by the WorkPoint's mesh-network
+      radio, example: B827EB13B5F2}
+  - {field: WorkPoint ID, description: unique string assigned when created on CoWorkr,
+    example: 54f45a67ac641604fd9bfa1a}
+  attributes:
+  - {field: name, description: custom value assigned via the CoWorkr app; defaults
+      to the WorkPoint UUID}
+  - {field: firmware, description: version of firmware running the WorkPoint}
+  - {field: notes, description: free-text custom field}
+  - {field: connected, type: boolean, description: true if the WorkPoint reported to
+      the server within the anticipated time frame}
+  - {field: recentlyConnected, admin_only: true}
+  - {field: occupied, type: boolean, description: true if the WorkPoint is reporting
+      an occupied state}
+  - {field: occupiedBy, admin_only: true}
+  - {field: occupyReason, admin_only: true}
+  - {field: occupancyChanged, type: timestamp, description: last reported change in
+      status}
+  - {field: recentlyOccupied, type: boolean, description: occupied within the last
+      5 minutes}
+  - {field: flags.press, type: boolean, description: a notification button has been
+      pressed}
+  - {field: flags.button1, type: boolean}
+  - {field: flags.button2, type: boolean}
+  - {field: RSSI, admin_only: true, description: signal strength}
+  - {field: battery, admin_only: true}
+  - {field: optical, admin_only: true, description: light-intensity reading where available}
+  versions: [V1, V2, V3, V4]
+- name: Counter
+  aka: WorkSpace Counter
+  description: Camera/thermal people-counting device using a computer-vision library
+    and a machine-learning model. Creates WorkPointActivity records keyed by ID + UUID
+    + '_N' where N runs 0..capacity-1. Distinguished from WorkPoint records by an automatic
+    Tag key "sensor" with value "counter", and has its own API calls distinct from
+    WorkPoint calls.
+  identifiers:
+  - {field: Counter ID, description: unique string given when placed onto a FloorPlan,
+    example: 54f45a67ac641604fd9bfa1a}
+  - {field: Counter UUID, description: unique string associated with the mesh-network
+      radio, example: CE27EB1455F1}
+  attributes:
+  - {field: capacity, type: number, description: maximum number of work settings in
+      the monitored area, set by an admin in the CoWorkr app}
+- name: WorkHub
+  aka: Hub
+  description: Internet-enabled gateway that reads WorkPoint data and pushes it to
+    CoWorkr's servers over LAN, WiFi or a cellular dongle.
+  identifiers:
+  - {field: WorkHub ID, example: 54f45a67ac641604fd9bfa1a}
+  - {field: WorkHub UUID, description: mesh-network radio identifier, example: CE27EB1455F1}
+- name: WorkPlace
+  description: A physical location from which WorkPoints and WorkHubs stream - generally
+    one building at a geographic address. Contains one or more FloorPlans.
+  identifiers:
+  - {field: WorkPlace ID, description: unique case-sensitive alphanumeric identifier,
+    example: YvamDKDx6KD4QZh5g}
+  attributes:
+  - {field: name, description: custom field assigned by a user}
+  - {field: address, description: physical location, also paired with WorkHub geolocation}
+  - {field: timezone, description: local timezone; data timestamps are UTC ("Z"-suffixed,
+      e.g. 2015-01-01T10:00:00.000Z)}
+  - {field: start, type: date, description: first day data streams from the WorkPlace}
+  - {field: end, type: date, description: last day data streams; generally the customer
+      subscription period}
+  - {field: activeStartHour, description: start of the range outside which occupancy
+      data is ignored}
+  - {field: activeEndHour, description: end of that range}
+- name: Group
+  description: A grouping of users with specific access permissions - generally one
+    per customer, but may also be a third party overseeing multiple customers.
+  identifiers:
+  - {field: Group ID, description: case-sensitive alphanumeric, example: nzYf5H8RNBYSgrLHJ}
+  attributes:
+  - {field: name}
+- name: FloorPlan
+  description: An image file (typically a CAD 2D drawing exported to jpeg/png) used
+    as the background of CoWorkr's floorplan view, onto which WorkPoints are placed.
+  identifiers:
+  - {field: FloorPlan ID, description: unique string assigned on creation}
+  attributes:
+  - {field: name, required: true, description: custom name given on upload}
+  - {field: x, description: X coordinate locating a device icon on the floorplan image}
+  - {field: y, description: Y coordinate locating a device icon on the floorplan image}
+- name: Tag
+  description: Key/value attribute assigned to CoWorkr devices to contextualise location
+    (department, resource, furniture type, room type, space type). A Tag may have one
+    Key and multiple Values. Tags must not contain PII - doing so violates the CoWorkr
+    EULA.
+  attributes:
+  - {field: key, example: Furniture}
+  - {field: value, example: Desk}
+  defaults:
+  - {key: Floor, value: FloorPlan Name, note: created from the FloorPlan name, e.g.
+      "floor 12"}
+  - {key: Sensor, value: Sensor Type, note: 'generated from device firmware: IR, PIR,
+      Acceleration, Counter'}
+- name: WorkPointActivity
+  description: The activity/occupancy record produced by devices. For Counters, one
+    record per capacity slot, keyed <ID>_<N>.
+relationships:
+- {from: WorkPlace, to: FloorPlan, kind: has_many, via: workPlaceId}
+- {from: FloorPlan, to: WorkPoint, kind: has_many, via: 'floorPlan placement (x,y)'}
+- {from: FloorPlan, to: WorkHub, kind: has_many, via: floorPlan placement}
+- {from: FloorPlan, to: Counter, kind: has_many, via: floorPlan placement}
+- {from: WorkHub, to: WorkPoint, kind: has_many, via: mesh network collection}
+- {from: WorkPoint, to: WorkPointActivity, kind: has_many, via: WorkPoint ID}
+- {from: Counter, to: WorkPointActivity, kind: has_many, via: '<Counter ID>_<N>'}
+- {from: WorkPoint, to: Tag, kind: has_many, via: tag key/value}
+- {from: Counter, to: Tag, kind: has_many, via: 'automatic tag sensor=counter'}
+- {from: WorkPlace, to: Group, kind: belongs_to, via: group}
+- {from: WorkPoint, to: WorkPlace, kind: belongs_to, via: 'floorPlan -> workPlace'}
+id_conventions:
+- {scope: 'WorkPoint / Counter / WorkHub ID', form: 24-character lowercase hex (MongoDB
+    ObjectId shape), example: 54f45a67ac641604fd9bfa1a}
+- {scope: 'WorkPoint / Counter / WorkHub UUID', form: 12-character uppercase hex radio
+    address, example: B827EB13B5F2}
+- {scope: WorkPlace ID / Group ID, form: 17-character case-sensitive alphanumeric,
+  example: YvamDKDx6KD4QZh5g}

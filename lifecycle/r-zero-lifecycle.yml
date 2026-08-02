@@ -1,0 +1,44 @@
+generated: '2026-08-02'
+method: searched
+source: https://status.rzero.com/
+versioning:
+  scheme: unknown
+  current: null
+  docs: null
+  note: >-
+    No public versioning policy. The only version identifiers R-Zero publishes are
+    hardware generations (WorkPoint Sensor V1-V4), documented in the CoWorkr General
+    Definitions article, not API versions.
+  hardware_versions:
+  - {product: WorkPoint Sensor, version: V1, sensing: temperature or vibration, status: retired,
+    evidence: '"no longer available"'}
+  - {product: WorkPoint Sensor, version: V2, sensing: temperature or vibration, status: legacy}
+  - {product: WorkPoint Sensor, version: V3, sensing: passive infrared (PIR), status: supported}
+  - {product: WorkPoint Sensor, version: 'V4', sensing: digital passive infrared, status: current,
+    since: '2019'}
+  hardware_source: https://rzerosystems.zendesk.com/hc/en-us/articles/4408423267991-General-Definitions
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: no published deprecation policy and no evidence of RFC 8594 Sunset/Deprecation
+    header support; no Deprecation pointer is wired
+sla:
+  url: null
+  uptime_target: null
+  note: no public SLA. Commercial terms live in the Technology & Services Agreement
+    at https://rzero.com/legal/technology-services-agreement/
+status_page: https://status.rzero.com/
+status_page_detail:
+  provider: isdown.app (status.rzero.com CNAMEs to sp.isdown.app)
+  title: R-Zero Status Page
+  components:
+  - {name: Connect Application, status: operational}
+  refresh: auto every 60 seconds
+  history: current status only; no historical uptime percentages published
+  probed: '2026-08-02'
+changelog: null
+changelog_note: >-
+  No dated changelog or release-notes surface exists on rzero.com, coworkr.co or the
+  R-Zero help center (a help-center search for "changelog" and "release notes" returned
+  no matching article). No ChangeLog pointer is wired.
+deprecated_operations: []

@@ -1,0 +1,96 @@
+generated: '2026-08-02'
+method: searched
+source: https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions
+sources:
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408403848599-API-Documentation
+- https://coworkr.co/apiaccess
+note: >-
+  R-Zero publishes no OpenAPI and its API reference is served only inside the authenticated
+  CoWorkr application, so this artifact captures only what R-Zero states publicly.
+  Fields marked "undisclosed" are genuinely not published - they are not omissions
+  in this file, and no Idempotency pointer is wired because no idempotency contract
+  is documented.
+access:
+  model: request-and-approve
+  statement: 'The link to CoWorkr''s API Documentation can be found in the top right
+    drop-down menu. If you do not see a link to CoWorkr''s API, you may not have permission
+    to use the API. For requests to access CoWorkr''s API, please send a request to
+    support@rzerosystems.com with your username and workplace that you''d like to access.'
+  request_contact: support@rzerosystems.com
+  source: https://rzerosystems.zendesk.com/hc/en-us/articles/4408403848599-API-Documentation
+surfaces:
+- name: REST API
+  style: REST
+  purpose: pull historical and current workplace analytical / utilization data into
+    BI and reporting workflows
+  host: https://api.coworkr.co
+  documented_publicly: false
+- name: STREAM API
+  style: DDP (Meteor Distributed Data Protocol) over Node.js
+  purpose: push real-time utilization sensor updates to partner reservation and workplace-experience
+    applications
+  host: https://api.coworkr.co
+  documented_publicly: false
+authentication:
+  style: undisclosed
+  gated: true
+  note: account/permission gated inside the CoWorkr application; no OAuth 2.0, OIDC
+    discovery or API-key documentation is published anonymously
+idempotency:
+  supported: unknown
+  header: null
+  note: not documented publicly - no Idempotency pointer wired
+pagination:
+  style: unknown
+  note: not documented publicly
+filtering:
+  documented:
+  - {dimension: time range, note: analytics are bucketed in 30-minute intervals and
+      filtered by a selected date range}
+  - {dimension: floors and tags, note: '"Floors & Tags" / "Space tags" filters select
+      space types by device tag'}
+  - {dimension: days of week, note: utilization-by-day averages like days across the
+      selected period}
+timestamps:
+  timezone: UTC
+  format: ISO 8601 with trailing Z
+  example: '2015-01-01T10:00:00.000Z'
+  statement: 'Data timestamps are in UTC, this is notated by the "Z" at the end of
+    each timestamp'
+  source: https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions
+  note: each WorkPlace also carries a local timezone attribute, used for display and
+    for the active-hours window
+identifiers:
+  device_id: 24-character lowercase hex (MongoDB ObjectId shape), e.g. 54f45a67ac641604fd9bfa1a
+  device_uuid: 12-character uppercase hex mesh-radio address, e.g. B827EB13B5F2
+  workplace_id: 17-character case-sensitive alphanumeric, e.g. YvamDKDx6KD4QZh5g
+  counter_activity_key: '<Counter ID>_<N> where N runs 0..capacity-1'
+resource_shaping:
+  tags: Key/value tags contextualise every device; Counter records are distinguished
+    from WorkPoint records by an automatically assigned tag key "sensor" with value
+    "counter", and Counters have their own API calls distinct from WorkPoint calls.
+  active_hours: Each WorkPlace defines an Active Start Hour and Active End Hour; occupancy
+    data outside that range is ignored (e.g. to exclude late-night cleaning crews).
+  subscription_window: Each WorkPlace carries Start and End dates bounding the period
+    data streams, generally the customer's subscription period.
+error_envelope:
+  format: unknown
+  note: no public error reference; errors/ artifact intentionally not written
+rate_limiting:
+  documented: false
+  headers: []
+versioning:
+  api_versioning: undisclosed
+  see: lifecycle/r-zero-lifecycle.yml
+privacy:
+  pii: 'Prohibited in Tag values by the CoWorkr EULA. R-Zero states the sensing platform
+    collects no personally identifiable information: WorkPoints use passive infrared,
+    WorkSpace Counters use a low-power thermal sensor for anonymous counting.'
+  architecture: outbound-only
+  source: https://rzero.com/security/
+cross_links:
+  data_model: data-model/r-zero-data-model.yml
+  vocabulary: vocabulary/r-zero-vocabulary.yml
+  lifecycle: lifecycle/r-zero-lifecycle.yml
+  conformance: conformance/r-zero-conformance.yml

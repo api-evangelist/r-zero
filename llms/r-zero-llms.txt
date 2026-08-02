@@ -1,0 +1,48 @@
+# R-Zero
+
+> R-Zero Systems is a San Francisco based building-intelligence company (founded 2020) that uses privacy-first occupancy sensors, indoor-air-quality monitoring and AI to autonomously optimize HVAC ventilation, claiming 20-40% HVAC energy savings with no retrofits. Its R-Zero Connect platform turns sensor telemetry into occupancy analytics, space-utilization insights and portfolio reporting. R-Zero's developer surface comes from CoWorkr, the workplace-sensor company it acquired: a REST API for historical utilization data and a Node.js/DDP Stream API for real-time occupancy events. Both are account-gated - there is no public OpenAPI, GraphQL, MCP or A2A surface.
+
+## APIs
+
+- [CoWorkr REST API](https://rzerosystems.zendesk.com/hc/en-us/sections/4408250694295-API): Pull workplace analytical data - historical and current occupancy, utilization and device records - into BI tools. Host https://api.coworkr.co. Access is permission-gated; request it from support@rzerosystems.com.
+- [CoWorkr Stream API](https://coworkr.co/apiaccess): Real-time push of utilization sensor updates over Node.js/DDP, used by partner reservation and workplace-experience apps to show live desk and room availability and auto-cancel ghosted reservations.
+
+## Docs
+
+- [API section (help center)](https://rzerosystems.zendesk.com/hc/en-us/sections/4408250694295-API): The two published API articles.
+- [API Documentation](https://rzerosystems.zendesk.com/hc/en-us/articles/4408403848599-API-Documentation): How to get API access - the reference itself is inside the authenticated application.
+- [API Definitions](https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions): The object model the APIs expose - WorkPoint, Counter, WorkHub, WorkPlace, FloorPlan, Tags.
+- [General Definitions](https://rzerosystems.zendesk.com/hc/en-us/articles/4408423267991-General-Definitions): Device and platform glossary.
+- [Analytics Definitions](https://rzerosystems.zendesk.com/hc/en-us/articles/4408402928407-Analytics-Definitions): How every utilization and vacancy metric is computed.
+- [Help center](https://rzerosystems.zendesk.com/hc/en-us): Product, hardware and installation documentation.
+- [Real-time Data & API](https://coworkr.co/apiaccess): The public description of the REST and Stream APIs and the partner integrations built on them.
+
+## Artifacts
+
+- [Data model](data-model/r-zero-data-model.yml): Entities, attributes and relationships for the CoWorkr object model, from R-Zero's published API Definitions.
+- [Vocabulary](vocabulary/r-zero-vocabulary.yml): Device, platform, analytics and API terms as R-Zero defines them.
+- [Conventions](conventions/r-zero-conventions.yml): Access model, UTC timestamp format, identifier shapes, tagging, active-hours and subscription-window semantics.
+- [Conformance](conformance/r-zero-conformance.yml): SOC 2 Type II and SOC 3 posture, and the standards R-Zero does not claim.
+- [Lifecycle](lifecycle/r-zero-lifecycle.yml): Status page, hardware generations, and the absence of a public versioning or deprecation policy.
+- [Packages](packages/r-zero-packages.yml): Registry search result - no first-party SDKs published.
+- [Well-known probe](well-known/r-zero-well-known.yml): Full contract-discovery record across every R-Zero and CoWorkr host.
+
+## Products
+
+- [AI Energy Efficiency](https://rzero.com/ai-energy-efficiency/): Occupancy-driven ventilation control.
+- [Occupancy Analytics](https://rzero.com/occupancy-analytics/): Real-time occupancy sensors and dashboards.
+- [Portfolio Analytics](https://rzero.com/portfolio-analytics/): Cross-building performance monitoring.
+- [IAQ Monitoring](https://rzero.com/iaq-monitoring/): CO2, particulates, VOC, temperature and humidity tracking.
+
+## Company
+
+- [Website](https://rzero.com/)
+- [Blog](https://rzero.com/blog/)
+- [Security](https://rzero.com/security/): SOC 2 Type II, downloadable SOC 3 report and security/privacy whitepaper.
+- [Status](https://status.rzero.com/): Connect Application status.
+- [Contact](https://rzero.com/contact/)
+- [Terms and conditions](https://rzero.com/legal/terms-and-conditions/)
+- [Privacy policy](https://rzero.com/legal/privacy-policy/)
+- [Product privacy notice](https://rzero.com/legal/product-privacy-notice/)
+- [End user license agreement](https://rzero.com/legal/end-user-license-agreement/)
+- [Technology & services agreement](https://rzero.com/legal/technology-services-agreement/)

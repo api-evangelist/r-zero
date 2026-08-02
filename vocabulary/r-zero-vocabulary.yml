@@ -1,0 +1,102 @@
+generated: '2026-08-02'
+method: searched
+source: https://rzerosystems.zendesk.com/hc/en-us/articles/4408423267991-General-Definitions
+sources:
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408423267991-General-Definitions
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408402928407-Analytics-Definitions
+- https://rzerosystems.zendesk.com/hc/en-us/articles/4408423921303-API-Definitions
+note: >-
+  R-Zero publishes a real definitions surface in its help center - General Definitions
+  (devices and platform objects), Analytics Definitions (the occupancy metrics R-Zero
+  Connect computes) and API Definitions (the object model the REST and Stream APIs
+  expose). Captured here verbatim in substance; the entity/attribute detail lives in
+  data-model/r-zero-data-model.yml.
+terms:
+- term: WorkPoint Sensor
+  category: device
+  definition: A mesh-network, low-energy occupancy sensor detecting occupancy from
+    passive infrared readings. Matchbook-sized, ultra-low-power circuit, 2.4 GHz wireless,
+    5+ year lifetime on a lithium coin cell. Requires an authenticated Hub to reach
+    the CoWorkr cloud.
+- term: WorkSpace Counter
+  category: device
+  definition: A mesh-network people-counting device using infrared sensing and a lightweight
+    deep-learning model with a low-power thermal sensor for anonymous occupant counting.
+- term: Hub / WorkHub
+  category: device
+  definition: The internet-enabled device that reads WorkPoint data and pushes it to
+    CoWorkr's servers over LAN, WiFi or a cellular dongle.
+- term: WorkPlace
+  category: platform-object
+  definition: A physical location from which WorkPoints and WorkHubs stream, generally
+    a single building at a geographic address; contains one or more FloorPlans.
+- term: FloorPlan
+  category: platform-object
+  definition: An image (usually a CAD 2D drawing exported to raster) used as the background
+    of the floorplan view, onto which devices are placed by X/Y coordinate.
+- term: Group
+  category: platform-object
+  definition: A grouping of users with specific access permissions, generally created
+    per customer, sometimes for a third party overseeing multiple customers.
+- term: Tag
+  category: platform-object
+  definition: A key/value attribute assigned to devices to contextualise location -
+    department, resource, furniture type, room type, space type. Tags must never contain
+    personally identifiable information; doing so violates the CoWorkr EULA.
+- term: Space Type
+  category: analytics
+  definition: The tag associated with each device on a floorplan, used to group utilization
+    and vacancy comparisons (e.g. large / medium / small conference rooms).
+- term: Utilization
+  category: analytics
+  definition: Also referred to as sensor "activity"; R-Zero Connect's primary metric
+    for measuring spaces.
+- term: Average Utilization
+  category: analytics
+  definition: The average percentage of seats occupied in a space - total seats occupied
+    across the space, averaged over the selected time frame in 30-minute buckets.
+- term: Peak Utilization
+  category: analytics
+  definition: The highest percentage and number of seats occupied within a given time
+    period, computed in 30-minute buckets.
+- term: Average Daily Vacancies
+  category: analytics
+  definition: The average percentage and number of seats or spaces completely vacant
+    each day - seats with 0% utilization, averaged over the time frame.
+- term: Utilization Trend
+  category: analytics
+  definition: A chart over the selected date range with two lines - daily peak and
+    daily average.
+- term: Utilization by Hour
+  category: analytics
+  definition: Average percentage of seats or spaces used per hour.
+- term: Utilization by Day
+  category: analytics
+  definition: Average percentage of seats or spaces used for each day of the week,
+    averaging like days across the full time frame.
+- term: Utilization by Space Type
+  category: analytics
+  definition: Utilization measured as the percentage of TIME each space type is occupied
+    - deliberately different from the seat-percentage definition used by the other
+    utilization metrics.
+- term: Vacancy by Space Type
+  category: analytics
+  definition: The average number of vacant seats in each space type.
+- term: Group Size by Occupancy
+  category: analytics
+  definition: The percentage of time each group size spends utilizing the spaces; an
+    "Exclude Unoccupied" option filters out group size 0.
+- term: REST API
+  category: api
+  definition: CoWorkr's standard API for pulling workplace analytical data - all workplace
+    utilization data from one location, feeding historical data into BI tools.
+- term: STREAM API
+  category: api
+  definition: A Node.js/DDP feed pushing utilization sensor updates in real time; a
+    raw feed giving real-time integration with the CoWorkr platform.
+- term: ODCV
+  category: product
+  definition: Occupancy-Driven Ventilation - modulating HVAC ventilation from real-time
+    occupancy rather than fixed schedules, the mechanism behind R-Zero's claimed 20-40%
+    HVAC energy savings.
+  source: https://rzero.com/offers/odcv-whitepaper-ungated/
