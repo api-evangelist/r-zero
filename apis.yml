@@ -81,6 +81,11 @@ apis:
   tags:
   - Occupancy
   - Streaming
+  - Real-Time
+  - Event
+  tags_raw:
+  - Occupancy
+  - Streaming
   - Real Time
   - Events
   properties:
