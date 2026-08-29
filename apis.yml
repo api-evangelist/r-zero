@@ -13,6 +13,17 @@ description: 'R-Zero Systems is a San Francisco based building-intelligence comp
   Comfy, iOffice Hummingbird, Serraview, Teem, Tactic, Siemens). Both APIs are account-gated
   - documentation is served inside the authenticated application and access is granted
   on request - so no public OpenAPI, GraphQL, MCP or A2A surface is published.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://rzero.com/wp-content/uploads/2023/12/r-zero-logo-icon.png
 url: https://raw.githubusercontent.com/api-evangelist/r-zero/refs/heads/main/apis.yml
 x-type: company
