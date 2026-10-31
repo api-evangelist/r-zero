@@ -64,37 +64,99 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-R-Zero Systems is a San Francisco based building-intelligence company founded in 2020 that combines
-privacy-first occupancy sensors, indoor-air-quality monitoring and AI to autonomously optimize HVAC
-ventilation in commercial real estate, healthcare and higher-education buildings — claiming 20–40%
-HVAC energy savings with no retrofits or capital investment. Its platform, R-Zero Connect, turns raw
-sensor telemetry into occupancy analytics, space-utilization insights and portfolio reporting.
+R-Zero Systems is a San Francisco based building-intelligence company founded in 2020 that combines privacy-first occupancy sensors, indoor-air-quality monitoring and AI to autonomously optimize HVAC ventilation in commercial real estate, healthcare and higher-education buildings, claiming 20-40% HVAC energy savings without retrofits or capital investment. Its software platform, R-Zero Connect, turns raw sensor telemetry into occupancy analytics, space-utilization insights and portfolio reporting. R-Zero acquired the workplace-sensor company CoWorkr, whose platform still carries the company's developer surface: a REST API for pulling historical workplace utilization data into BI tooling and a Node.js/DDP Stream API that pushes real-time occupancy events into reservation and workplace-experience applications (AgilQuest, Comfy, iOffice Hummingbird, Serraview, Teem, Tactic, Siemens). Both APIs are account-gated - documentation is served inside the authenticated application and access is granted on request - so no public OpenAPI, GraphQL, MCP or A2A surface is published.
 
-R-Zero's developer surface comes from **CoWorkr**, the workplace-sensor company it acquired:
+**Areas:** Company · Smart Buildings · Occupancy · Sensors · IoT · Indoor Air Quality · Energy Efficiency · HVAC · Analytics · Commercial Real Estate · Workplace
 
-- **CoWorkr REST API** — pull historical and current workplace utilization data into BI tooling.
-- **CoWorkr Stream API** — Node.js/DDP push of real-time occupancy events into reservation and
-  workplace-experience applications (AgilQuest, Comfy, iOffice Hummingbird, Serraview, Teem).
+## R-Zero on APIs.io
 
-Both APIs are **account-gated**: the reference is served inside the authenticated CoWorkr application
-and access is granted per account on request to R-Zero support. No public OpenAPI, GraphQL, MCP or
-A2A surface is published — see `well-known/r-zero-well-known.yml` for the full contract-discovery
-record.
+Everything profiled for R-Zero is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/r-zero/](https://apis.io/providers/r-zero/)** — or go straight to one of the APIs or properties below.
 
-## Artifacts
+### APIs (2)
 
-| Path | What it holds |
+- [CoWorkr REST API](https://apis.io/apis/r-zero/coworkr-rest-api/) — CoWorkr's standard REST API for pulling workplace analytical data - historical and current occupancy, utilization and device records for WorkPoints,…
+- [CoWorkr Stream API](https://apis.io/apis/r-zero/coworkr-stream-api/) — CoWorkr's real-time Stream API. Built on Node.js and DDP (the Meteor Distributed Data Protocol), it pushes utilization sensor updates as they happen - a raw…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [R Zero Vocabulary](https://apis.io/vocabularies/r-zero/r-zero-vocabulary/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [R Zero Domain Security](https://apis.io/security/r-zero/r-zero-domain-security/)
+- [R Zero Trust Center](https://apis.io/security/r-zero/r-zero-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://rzero.com/)
+- [Documentation](https://rzerosystems.zendesk.com/hc/en-us)
+- [API reference](https://rzerosystems.zendesk.com/hc/en-us/sections/4408250694295-API)
+- [Support](https://rzerosystems.zendesk.com/hc/en-us)
+- [Blog](https://rzero.com/blog/)
+- [Compliance](https://rzero.com/security/)
+- [Terms of service](https://rzero.com/legal/terms-and-conditions/)
+- [Privacy policy](https://rzero.com/legal/privacy-policy/)
+- [Status](https://status.rzero.com/)
+
+## API Evangelist rating
+
+**Kin Score 26.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| `data-model/` | The CoWorkr object model (WorkPoint, Counter, WorkHub, WorkPlace, FloorPlan, Tag) from R-Zero's published API Definitions |
-| `vocabulary/` | Device, platform, analytics and API terms as R-Zero defines them |
-| `conventions/` | Access model, UTC timestamp format, identifier shapes, tagging and active-hours semantics |
-| `conformance/` | SOC 2 Type II / SOC 3 posture and the standards R-Zero does not claim |
-| `lifecycle/` | Status page, hardware generations, and the absence of a versioning/deprecation policy |
-| `security/` | Domain security probe + trust-center capture |
-| `packages/` | Registry search result — no first-party SDKs published |
-| `well-known/` | `/.well-known/` probe and full contract-discovery record |
-| `llms/` | Generated llms.txt |
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 33.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 43.4 |
 
-- https://rzero.com/
-- https://coworkr.co/apiaccess
-- https://forgeglobal.com/r-zero_stock/
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 19.7** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/r-zero/](https://apis.io/providers/r-zero/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for R-Zero: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/r-zero/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
